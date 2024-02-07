@@ -1,78 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Socket Clent | Chandrima</title>
-  <script src="root.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Sockets</title>
+    <link rel="stylesheet" href="public/css/styles.css">
 </head>
-
 <body>
-  <script type="text/javascript">
-    alert("Want to view the messages?");
-  </script>
-  <p><b>Messages
-  </b></p>
-  <output id="messages"></output>
-  <script>
-    const messages = document.getElementById("messages")
-    const socket = new WebSocket('ws://localhost:1337')
-    socket.onopen = (event) => {
-      console.log('WebSocket is connected!')
-      const id = Math.round(Math.random() * 100)
-      console.log('sending...', id)
-      const intervalId = setInterval(() => {
-
-        const data = JSON.stringify(
-          [
-            {
-              id,
-              name: `[${id}] Chandrima `,
-              address: {
-                street: 'my street',
-                number: 20 * id
-              },
-              profession: 'developer'
-            },
-            {
-              id,
-              name: `[${id}] Rima`,
-              address: {
-                street: 'my street',
-                number: 20 * id
-              },
-              profession: 'developer'
-            },
-            {
-              id,
-              name: `[${id}] Testing User`,
-              address: {
-                street: 'my street',
-                number: 20 * id
-              },
-              profession: 'developer'
-            }
-          ]
-        )
-
-        socket.send(data)
-      }, 1000)
-
-      setTimeout(() => {
-        clearInterval(intervalId)
-      }, 5000);
-
-    }
-    socket.onmessage = (msg) => {
-      const message = msg.data
-      console.log('I got a message!', message)
-      messages.innerHTML += `<br/> ${message}`
-    }
-    socket.onerror = (error) => console.error(`Web Socket error`, error)
-    socket.onclose = (event) => console.log('Disconnected from WebSocket server')
-  </script>
+    <h1>Test:</h1>
+    <button id="ws-open">
+        Open Connection
+    </button>
+    <button id="ws-close">
+        Close Connection
+    </button>
+    <div class="input-block">
+        <input type="text" id="ws-input">
+        <button id="ws-send">
+            Send message
+        </button>
+    </div>
+    <pre id="messages"></pre>
+    <script src="public/js/app.js"></script>
 </body>
-
 </html>
