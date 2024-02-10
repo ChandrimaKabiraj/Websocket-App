@@ -5,3 +5,6 @@ Similarly on clicking the button "Close Connection" we are closing the websocket
 
 To start the server ,type "npm run dev"
 *Dont forget to install(npm install) before....
+
+![Websocket API - UI](/images/img.jpeg "Websocket API")
+
